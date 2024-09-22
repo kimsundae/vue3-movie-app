@@ -6,7 +6,7 @@ export default {
   // data
   state: () => ({
     movies: [],
-    message: "",
+    message: "Search for the movie title!",
     loading: false,
   }),
   // computed
@@ -24,6 +24,12 @@ export default {
   },
   actions: {
     async searchMovies({ state, commit }, payload) {
+      if (state.loading) return;
+
+      commit("updateState", {
+        message: "",
+        loading: true,
+      });
       try {
         const { title, type, number, year } = payload;
 
@@ -49,6 +55,10 @@ export default {
         }
       } catch (message) {
         commit("updateState", { movies: [], message });
+      } finally {
+        commit("updateState", {
+          loading: false,
+        });
       }
     },
   },
