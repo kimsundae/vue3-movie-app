@@ -1,0 +1,3 @@
+[submodule "vue3-movie-app"]
+	path = vue3-movie-app
+	url = https://github.com/kimsundae/vue3-movie-app
